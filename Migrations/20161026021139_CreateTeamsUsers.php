@@ -13,9 +13,7 @@ class CreateTeamsUsers extends AbstractMigration
     public function change()
     {
         $table = $this->table('teams_users');
-        $table->addColumn('status','enum', array('values'=>'active, inactive'))
-        ->addColumn('points', 'integer')
-        ->addColumn('user_id', 'integer')
+        $table->addColumn('user_id', 'integer')
         ->addColumn('team_id', 'integer')
         ->create();
 

@@ -13,6 +13,9 @@ class CreateTeams extends AbstractMigration
             'limit' => 255,
             'null' => false,
         ])
+        ->addColumn('status','enum', array('values'=>'active, inactive'))
+        ->addColumn('points', 'integer')
+            
         ->create();
     }
 }
