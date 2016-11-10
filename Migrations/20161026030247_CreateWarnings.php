@@ -2,7 +2,7 @@
 use Migrations\AbstractMigration;
 
 
-class CreateStations extends AbstractMigration
+class CreateWarnings extends AbstractMigration
 {
     /**
      * Change Method.
@@ -13,10 +13,10 @@ class CreateStations extends AbstractMigration
      */
     public function change()
     {
-        $table = $this->table('stations');
+        $table = $this->table('warnings');
         $table->addColumn('posX', 'integer')
               ->addColumn('posY', 'integer')
-              ->addColumn('warning', 'boolean')
+              ->addColumn('tile', 'integer')
 
         ->create();
     }

@@ -6,7 +6,7 @@
             $this->pdo = $pdo;
         }
 
-        function getData($table)
+        function getData($table) //Get all data and recive parameter
         {   
             switch ($table) {
                 case 'users':
@@ -23,5 +23,23 @@
             $query->execute();
             return $query->fetchAll();
         }
+/*
+        function updateStations($x,$y,$tiled){
+
+            switch (variable) {
+                case 'value':
+                    $query = $this->pdo->prepare('INSERT INTO stations (posX,posY,tiled) VALUES ($x,$y,$tiled) ');
+                    break;
+                
+                default:
+                    # code...
+                    break;
+            }
+
+            $query->execute();
+            return $query->fetchAll();
+
+        }
+*/
     }
 ?>

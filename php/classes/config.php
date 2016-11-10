@@ -5,7 +5,7 @@
     $db_username = 'root'; //Database Username
     $db_password = ''; //Database Password
 
-    try
+    try //Connect to DB
     {
         $pdo = new PDO('mysql:host='. $host .';dbname='.$db_name, $db_username, $db_password);
     }
