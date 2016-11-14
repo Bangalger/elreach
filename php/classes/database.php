@@ -21,7 +21,8 @@
             }
             
             $query->execute();
-            return $query->fetchAll();
+            return $query->fetchAll(PDO::FETCH_ASSOC);
+
         }
 /*
         function updateStations($x,$y,$tiled){

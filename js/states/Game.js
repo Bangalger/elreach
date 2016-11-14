@@ -22,12 +22,15 @@ ZPlat.GameState = {
     
     //cursor keys to move the player
     this.cursors = this.game.input.keyboard.createCursorKeys();
+  
+
   },
   create: function() {
     //load current level
     this.loadLevel();
-	this.timerDown();
-
+	  this.timerDown();
+    var phaserJSON = this.game.cache.getJSON('version');
+    console.log(phaserJSON);
 ///////////////////////////////////////////////////////////////////////////////
     this.coins = this.game.add.group();
     this.coins.enableBody = true;
@@ -41,8 +44,6 @@ ZPlat.GameState = {
 	//this.chest.body.collideWorldBounds = true;
 	//this.chest.enableBody = true;
 }	
-	
-
 	this.coinText = this.game.add.text(10, 10, 'Coins: 0/10', { fontSize: '16px', fill: '#fff' });
 	this.coinText.fixedToCamera = true;
 	
@@ -100,7 +101,7 @@ ZPlat.GameState = {
     
     //kill enemy if it falls off
     if(this.player.bottom == this.game.world.height){
-      this.gameOver();
+     // this.gameOver();
     }
   },
   loadLevel: function(){  
@@ -205,7 +206,7 @@ ZPlat.GameState = {
 		this.timer -= 1;
 		this.timerText.text = 'Tiempo: ' + this.timer;
 	} else {
-		this.gameOver();
+		//this.gameOver();
 		//gameOverText.fixedToCamera = true;
 	}
 	},1000);
