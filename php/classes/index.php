@@ -20,6 +20,10 @@
     		$rows = $db->getData('teams',$id);
     		break;
 
+        case 'one_team_level':
+            $rows = $db->getData('teams',$id);
+        
+            break;
     	case 'level':
     		$rows = $db->getLevel();
     		break;
