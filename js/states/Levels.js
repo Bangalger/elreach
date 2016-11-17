@@ -1,7 +1,6 @@
 var ZPlat = ZPlat || {
 };
-var users;
-var test=1;
+var user_id=1;
 ZPlat.LevelsState={
 
 	preload:function(){
@@ -9,32 +8,22 @@ ZPlat.LevelsState={
 	},
 
 	create:function(){
-		testAjax(function(output){
-		 	console.log(output);
-		});
+		getRequests(function(output){
+		 	console.log(output[0].first_name);
+		},'users');
 
 	},
 	update:function(){
 	}
 }
 
-function getUsers(){
-		$.post('http://localhost/elreach/php/classes/index.php', { consulta: "users"}, 
-     		function(returnedData){
-        	users = returnedData;
-			//console.log(users[0]['first_name']);
-			return "Hi";
-		}, 'json');
-	return "Hi";
-}
-
-function testAjax(handleData) {
+function getRequests(handleData,request) {
   $.ajax({
     url:"http://localhost/elreach/php/classes/index.php",
     type: 'POST',
-    data: {consulta:'users'},  
+    data: {consulta: request},  
     success:function(data) {
-      handleData(data); 
+      handleData(jQuery.parseJSON(data)); 
     }
   });
 }
