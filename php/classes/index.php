@@ -14,7 +14,9 @@
     		$rows = $db->getData('users');
     		//print_r($rows);
     		break;
-    	
+    	case 'level':
+    		$rows = $db->getLevel();
+    		break;
     	default:
     		# code...
     		break;

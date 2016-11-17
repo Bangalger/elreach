@@ -26,7 +26,8 @@
         }
 
         function getLevels(){
-            
+            $query = $this->pdo->prepare('SELECT * FROM levels_teams');
+
         }
     }
 ?>
