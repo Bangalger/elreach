@@ -14,7 +14,7 @@
                     break;
                 case 'teams' :
                     //$query = $this->pdo->prepare('SELECT * FROM users, teams_users WHERE teams_users.user_id = 2 ');
-                $query = $this->pdo->prepare('SELECT teams_users.team_id FROM teams_users WHERE teams_users.user_id = 1 ');
+                $query = $this->pdo->prepare('SELECT teams_users.team_id FROM teams_users WHERE teams_users.user_id='.$id);
 
                 default:
                     # code...
