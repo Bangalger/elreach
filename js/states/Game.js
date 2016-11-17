@@ -29,8 +29,8 @@ ZPlat.GameState = {
     //load current level
     this.loadLevel();
 	  this.timerDown();
-    var phaserJSON = this.game.cache.getJSON('version');
-    console.log(phaserJSON);
+    //var phaserJSON = this.game.cache.getJSON('version');
+    //console.log(phaserJSON);
 ///////////////////////////////////////////////////////////////////////////////
     this.coins = this.game.add.group();
     this.coins.enableBody = true;
@@ -48,7 +48,8 @@ ZPlat.GameState = {
 	this.coinText.fixedToCamera = true;
 	
   },   
-  update: function() {    
+  update: function() {
+    $('.div').show();;    
     //collision between the player, enemies and the collision layer
     this.game.physics.arcade.collide(this.player, this.collisionLayer); 
     //this.game.physics.arcade.collide(this.enemies, this.collisionLayer); 

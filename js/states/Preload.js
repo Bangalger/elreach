@@ -1,9 +1,9 @@
 var ZPlat = ZPlat || {};
 
-//loading the game assets
+//Cargo algunos assets del juego
 ZPlat.PreloadState = {
   preload: function() {
-    //show loading screen
+    //Muestro la barra de carga
     this.preloadBar = this.add.sprite(this.game.world.centerX, this.game.world.centerY, 'preloadbar');
     this.preloadBar.anchor.setTo(0.5);
     this.preloadBar.scale.setTo(3);
@@ -27,11 +27,12 @@ ZPlat.PreloadState = {
     this.load.tilemap('level1', 'assets/levels/level1.json', null, Phaser.Tilemap.TILED_JSON);
     this.load.tilemap('level2', 'assets/levels/level2.json', null, Phaser.Tilemap.TILED_JSON);
 	this.load.image('coin', 'assets/images/coin.png');
-    this.game.load.json('version', 'http://localhost/elreach/php/classes/');
+   // this.game.load.json('version', 'http://localhost/elreach/php/classes/');
     
 	
   },
   create: function() {
-    this.state.start('Game');
+    //Una vez que termina preload, entro a create que llamo a levels.
+    this.state.start('Levels');
   }
 };
