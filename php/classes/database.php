@@ -6,14 +6,15 @@
             $this->pdo = $pdo;
         }
 
-        function getData($table) //Get all data and recive parameter
+        function getData($table,$id=null) //Get all data and recive parameter
         {   
             switch ($table) {
                 case 'users':
                     $query = $this->pdo->prepare('SELECT * FROM users');
                     break;
                 case 'teams' :
-                    $query = $this->pdo->prepare('SELECT * FROM teams');
+                    //$query = $this->pdo->prepare('SELECT * FROM users, teams_users WHERE teams_users.user_id = 2 ');
+                $query = $this->pdo->prepare('SELECT teams_users.team_id FROM teams_users WHERE teams_users.user_id = 1 ');
 
                 default:
                     # code...
@@ -25,8 +26,10 @@
 
         }
 
-        function getLevels(){
+        function getLevel(){
             $query = $this->pdo->prepare('SELECT * FROM levels_teams');
+            $query->execute();
+            return $query->fetchAll(PDO::FETCH_ASSOC);
 
         }
     }

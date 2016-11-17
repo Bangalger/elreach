@@ -7,13 +7,19 @@
     if(!empty($_POST["consulta"])){
     	$consulta = $_POST["consulta"];
     }
+    if(!empty($_POST["id"])){
+    	$id = $_POST["id"];
+    }
     //echo $consulta;
     switch ($consulta) {
     	case 'users':
-    		//echo 'yey';
     		$rows = $db->getData('users');
-    		//print_r($rows);
     		break;
+
+    	case 'teams':
+    		$rows = $db->getData('teams',$id);
+    		break;
+
     	case 'level':
     		$rows = $db->getLevel();
     		break;
