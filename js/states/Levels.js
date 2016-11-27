@@ -24,15 +24,13 @@ ZPlat.LevelsState={
 
 	preload:function(){
 		//Load del spritesheet botón. (Nombre Único, Ubicación, Width (Del botón), Height(del botón))
-		//this.game.load.spritesheet('teamButtons', 'assets/buttons/levelButton.png', 50, 53);
 		this.game.load.spritesheet('teamButtons', 'assets/buttons/levelButton.png', 203,66);
 
 	},
 
 	create:function(){
-		//Carga del botón
-		//this.teamButtons = this.game.add.sprite(this.game.world.centerX, this.game.world.centerY, 'teamButtons');
 		this.createButtons();
+		console.log(teams[0].team_id);
 
 	},
 	update:function(){
@@ -44,7 +42,7 @@ ZPlat.LevelsState={
 			teamButton.onInputOver.add(over, this);
 		    teamButton.onInputOut.add(out, this);
 		    teamButton.onInputUp.add(up, this);
-			teamButton.id = i;
+			teamButton.id = teams[i].team_id;
 		}	
 	}
 }
