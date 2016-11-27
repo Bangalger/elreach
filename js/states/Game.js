@@ -1,7 +1,10 @@
 var ZPlat = ZPlat || {};
 
-ZPlat.GameState = {
 
+console.log("What");
+
+
+ZPlat.GameState = {
 
   init: function(level) {    
     //console.log("this"+button.id)
@@ -28,6 +31,8 @@ ZPlat.GameState = {
   },
   create: function() {
     //load current level
+    alert(user_id);
+    alert(level);
     this.loadLevel();
 	  this.timerDown();
     //var phaserJSON = this.game.cache.getJSON('version');
@@ -217,3 +222,5 @@ ZPlat.GameState = {
  }
   
 };
+
+

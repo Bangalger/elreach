@@ -9,6 +9,10 @@
     }
     if(!empty($_POST["id"])){
     	$id = $_POST["id"];
+
+    }if(!empty($_POST["team_id"])){
+        $team_id = $_POST["team_id"];
+
     }
     //echo $consulta;
     switch ($consulta) {
@@ -25,7 +29,7 @@
         
             break;
     	case 'level':
-    		$rows = $db->getLevel();
+    		$rows = $db->getLevel($team_id);
     		break;
     	default:
     		# code...

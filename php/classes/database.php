@@ -14,8 +14,8 @@
                     break;
                 case 'teams' :
                     //$query = $this->pdo->prepare('SELECT * FROM users, teams_users WHERE teams_users.user_id = 2 ');
-                $query = $this->pdo->prepare('SELECT teams_users.team_id FROM teams_users WHERE teams_users.user_id='.$id);
-
+                    $query = $this->pdo->prepare('SELECT teams_users.team_id FROM teams_users WHERE teams_users.user_id='.$id);
+                    break;
                 default:
                     # code...
                     break;
@@ -26,8 +26,8 @@
 
         }
 
-        function getLevel(){
-            $query = $this->pdo->prepare('SELECT * FROM levels_teams');
+        function getLevel( $team_id = null){
+            $query = $this->pdo->prepare('SELECT * FROM teams INNER JOIN levels_teams ON teams.id=levels_teams.team_id INNER JOIN levels ON levels_teams.level_id = levels.id WHERE teams.id='.$team_id);
             $query->execute();
             return $query->fetchAll(PDO::FETCH_ASSOC);
 
