@@ -27,7 +27,7 @@ ZPlat.PreloadState = {
     this.load.tilemap('level1', 'assets/levels/level1.json', null, Phaser.Tilemap.TILED_JSON);
     this.load.tilemap('level2', 'assets/levels/level2.json', null, Phaser.Tilemap.TILED_JSON);
 	this.load.image('coin', 'assets/images/coin.png');
-   // this.game.load.json('version', 'http://localhost/elreach/php/classes/');
+
     
 	
   },

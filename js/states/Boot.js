@@ -1,6 +1,7 @@
 var ZPlat = ZPlat || {};
 
 //setting game configuration and loading the assets for the loading screen
+
 ZPlat.BootState = {
   init: function() {
     //loading screen will have a white background
