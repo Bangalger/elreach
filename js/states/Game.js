@@ -2,8 +2,9 @@ var ZPlat = ZPlat || {};
 
 ZPlat.GameState = {
 
-  init: function(level) {    
 
+  init: function(level) {    
+    //console.log("this"+button.id)
     this.currentLevel = level || 'level1';
     
     //constants
@@ -49,6 +50,7 @@ ZPlat.GameState = {
 	
   },   
   update: function() {
+    console.log(team_id);
     $('.div').show();;    
     //collision between the player, enemies and the collision layer
     this.game.physics.arcade.collide(this.player, this.collisionLayer); 

@@ -8,6 +8,13 @@ var first_name;
 var actualLevel;
 var teams;
 var teamsButton;
+var pepe= "holaa";
+
+/* Global Vars */
+
+var team_id;
+
+/* End Global Vars */
 
 getRequests(function(output){
  	console.log(output[0].first_name);
@@ -17,7 +24,6 @@ getRequests(function(output){
 getRequests(function(output){
  	teams = output;
 },'teams');
-
 
 
 ZPlat.LevelsState={
@@ -30,7 +36,7 @@ ZPlat.LevelsState={
 
 	create:function(){
 		this.createButtons();
-		console.log(teams[0].team_id);
+		//console.log(teams[0].team_id);
 
 	},
 	update:function(){
@@ -60,8 +66,10 @@ function getRequests(handleData,request) {
 
 
 function actionOnClick(button){
-	alert(button.id);
-	console.log("ghi");
+	
+	team_id = button.id;
+	alert(team_id);
+	this.state.start('Game');
 }
 
 function up() {
