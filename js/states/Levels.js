@@ -64,19 +64,21 @@ ZPlat.LevelsState={
 				  player_turn = output[0]['turn'];
 				},'level');
 				
-				this.state.start('Game');
+				this.game.state.start('Game');
 	}
+		
 }
+
 
 function getRequests(handleData,request) {
   $.ajax({
     url:"http://localhost:8012/elreach/php/classes/index.php",
     type: 'POST',
-    data: {consulta: request, id: user_id},  
-    success:function(data) {
+    async: false,
+    data: {consulta: request, id: user_id}
+  }).done(function(data) {
       handleData(jQuery.parseJSON(data)); 
-    }
-  });
+    });
 }
 
 function up() {
@@ -94,9 +96,11 @@ function getLevel(handleData,request) {
   $.ajax({
     url:"http://localhost:8012/elreach/php/classes/index.php",
     type: 'POST',
-    data: {consulta: request, team_id: team_id},  
+    data: {consulta: request, team_id: team_id},
+    async: false,  
     success:function(data) {
       handleData(jQuery.parseJSON(data)); 
     }
   });
 }
+

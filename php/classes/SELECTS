@@ -31,3 +31,8 @@ ON DELETE CASCADE --> Para eliminar el team y todas sus relaciones una vez que e
 Netbeans
 Xdebug --> extension para debuggear
 
+
+NOTAS PHASER
+
+Las variables que manejo por ajax, las tengo que manejar dentro de las funciones de phaser.
+

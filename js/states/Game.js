@@ -1,13 +1,12 @@
 var ZPlat = ZPlat || {};
 
-var warning_id, warning_x, warning_y, warning_tile;
+var warning_full;
 
 ZPlat.GameState = {
 
   init: function(level) {    
     //console.log("this"+button.id)
     this.currentLevel = level || 'level1';
-    
     //constants
     this.RUNNING_SPEED = 180;
     this.JUMPING_SPEED = 400;
@@ -24,22 +23,18 @@ ZPlat.GameState = {
     
     //cursor keys to move the player
     this.cursors = this.game.input.keyboard.createCursorKeys();
+    
 
-    this.getWarnings(function(output){
-      console.log(output);
-    },'warnings');
-  
+
+  },
+  preload:function(){
+    this.game.load.image('warning', 'assets/images/warning.png');
 
   },
   create: function() {
     //load current level
-    alert('User: '+user_id);
-    alert('Level: '+level_id);
-    alert('Team: '+team_id);
     this.loadLevel();
 	  this.timerDown();
-    //var phaserJSON = this.game.cache.getJSON('version');
-    //console.log(phaserJSON);
 ///////////////////////////////////////////////////////////////////////////////
     this.coins = this.game.add.group();
     this.coins.enableBody = true;
@@ -55,10 +50,20 @@ ZPlat.GameState = {
 }	
 	this.coinText = this.game.add.text(10, 10, 'Coins: 0/10', { fontSize: '16px', fill: '#fff' });
 	this.coinText.fixedToCamera = true;
-	
+  this.getWarnings(function(output){
+  alert("Level ID:" + level_id);
+      warning_full = output;
+    },'warnings');
+
+  alert(warning_full);
+  for(var i=0; i<warning_full.length;i++){
+    this.game.add.sprite(warning_full[i]['posX'], warning_full[i]['posY'], 'warning');
+  }
   },   
   update: function() {
-    console.log(team_id);
+
+    console.log("mouseX :" + this.game.input.mousePointer.x);
+    console.log("mouseY :" + this.game.input.mousePointer.y);
     $('.div').show();;    
     //collision between the player, enemies and the collision layer
     this.game.physics.arcade.collide(this.player, this.collisionLayer); 
@@ -224,18 +229,18 @@ ZPlat.GameState = {
 	
  },
 
- getWarnings:function(handleData,request){
+
+getWarnings:function(handleData,request){
     $.ajax({
     url:"http://localhost:8012/elreach/php/classes/index.php",
     type: 'POST',
+    async: false,
     data: {consulta: request, team_id: team_id, level_id: level_id},  
     success:function(data) {
       handleData(jQuery.parseJSON(data));
-      console.log(data); 
     }
   });
- }
-  
-};
+}
 
+};
 
