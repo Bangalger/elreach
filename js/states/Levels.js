@@ -8,12 +8,10 @@ var first_name;
 var actualLevel;
 var teams;
 var teamsButton;
-var pepe= "holaa";
 
 /* Global Vars */
 var user_id=1;
-var team_id;
-var level;
+var team_id, level_id, level_name, team_movements, player_turn;
 
 /* End Global Vars */
 
@@ -57,8 +55,13 @@ ZPlat.LevelsState={
 		team_id = button.id;
 			alert(team_id);
 				getLevel(function(output){
-				  console.log(output);
-				  level=output;
+				  console.log(output[0]);
+				  //level=output;
+				  level_id=output[0]['level_id'];
+				  level_name=output[0]['name'];
+				  level_status=output[0]['status'];
+				  team_movements=output[0]['movements'];
+				  player_turn = output[0]['turn'];
 				},'level');
 				
 				this.state.start('Game');

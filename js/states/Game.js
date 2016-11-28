@@ -1,8 +1,6 @@
 var ZPlat = ZPlat || {};
 
-
-console.log("What");
-
+var warning_id, warning_x, warning_y, warning_tile;
 
 ZPlat.GameState = {
 
@@ -26,13 +24,18 @@ ZPlat.GameState = {
     
     //cursor keys to move the player
     this.cursors = this.game.input.keyboard.createCursorKeys();
+
+    this.getWarnings(function(output){
+      console.log(output);
+    },'warnings');
   
 
   },
   create: function() {
     //load current level
-    alert(user_id);
-    alert(level);
+    alert('User: '+user_id);
+    alert('Level: '+level_id);
+    alert('Team: '+team_id);
     this.loadLevel();
 	  this.timerDown();
     //var phaserJSON = this.game.cache.getJSON('version');
@@ -219,6 +222,18 @@ ZPlat.GameState = {
 	}
 	},1000);
 	
+ },
+
+ getWarnings:function(handleData,request){
+    $.ajax({
+    url:"http://localhost:8012/elreach/php/classes/index.php",
+    type: 'POST',
+    data: {consulta: request, team_id: team_id, level_id: level_id},  
+    success:function(data) {
+      handleData(jQuery.parseJSON(data));
+      console.log(data); 
+    }
+  });
  }
   
 };

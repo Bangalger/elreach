@@ -13,6 +13,9 @@
     }if(!empty($_POST["team_id"])){
         $team_id = $_POST["team_id"];
 
+    } if(!empty($_POST["level_id"])){
+        $level_id = $_POST["level_id"];
+
     }
     //echo $consulta;
     switch ($consulta) {
@@ -31,6 +34,10 @@
     	case 'level':
     		$rows = $db->getLevel($team_id);
     		break;
+
+        case 'warnings':
+            $rows = $db->getWarnings($team_id, $level_id);
+            break;
     	default:
     		# code...
     		break;

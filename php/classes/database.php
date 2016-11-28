@@ -32,5 +32,11 @@
             return $query->fetchAll(PDO::FETCH_ASSOC);
 
         }
+
+        function getWarnings($team_id=null, $level_id=null){
+            $query = $this->pdo->prepare("SELECT * FROM warnings INNER JOIN teams_warnings_levels ON teams_warnings_levels.warning_id = warnings.id WHERE teams_warnings_levels.team_id ='$team_id' AND teams_warnings_levels.level_id ='$level_id'");
+            $query->execute();
+            return $query->fetchAll(PDO::FETCH_ASSOC);
+        }
     }
 ?>
