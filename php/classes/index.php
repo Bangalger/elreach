@@ -49,7 +49,7 @@
             break;
 
         case 'insert_warnings':
-            $rows = $db->insertWarnings($posX, $posY, $tile);
+            $rows = $db->insertWarnings($posX, $posY, $tile, $team_id, $level_id);
             break;
 
     	default:

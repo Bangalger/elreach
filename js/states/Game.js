@@ -23,6 +23,7 @@ ZPlat.GameState = {
     
     //cursor keys to move the player
     this.cursors = this.game.input.keyboard.createCursorKeys();
+    this.game.add.plugin(Fabrique.Plugins.InputField);
     
 
 
@@ -33,7 +34,20 @@ ZPlat.GameState = {
   },
   create: function() {
     //load current level
-    this.loadLevel();
+    var input = this.game.add.inputField(10, 90, {
+    font: '18px Arial',
+    fill: '#212121',
+    fontWeight: 'bold',
+    width: 150,
+    padding: 8,
+    borderWidth: 1,
+    borderColor: '#000',
+    borderRadius: 6,
+    placeHolder: 'Password',
+});
+
+    this.game.input.mouse.capture = true;
+    this.loadLevel(); 
 	  this.timerDown();
 ///////////////////////////////////////////////////////////////////////////////
     this.coins = this.game.add.group();
@@ -56,8 +70,7 @@ ZPlat.GameState = {
     },'warnings');
 
 
-  this.insertWarnings(function(output){
-    },'insert_warnings');
+
 
 
   alert(warning_full);
@@ -67,8 +80,8 @@ ZPlat.GameState = {
   },   
   update: function() {
 
-    console.log("mouseX :" + this.game.input.mousePointer.x);
-    console.log("mouseY :" + this.game.input.mousePointer.y);
+    //console.log("mouseX :" + this.game.input.mousePointer.x);
+    // console.log("mouseY :" + this.game.input.mousePointer.y);
     $('.div').show();;    
     //collision between the player, enemies and the collision layer
     this.game.physics.arcade.collide(this.player, this.collisionLayer); 
@@ -122,7 +135,7 @@ ZPlat.GameState = {
     
     //kill enemy if it falls off
     if(this.player.bottom == this.game.world.height){
-     // this.gameOver();
+      this.gameOver();
     }
   },
   loadLevel: function(){  
@@ -208,7 +221,13 @@ ZPlat.GameState = {
 
   */
   gameOver: function(){
-    this.game.state.start('Game', true, false, this.currentLevel);
+    $('body').on('click', function(){
+        insertWarnings(function(output){
+                    alert("I'm In");
+              },'insert_warnings',event.pageX,event.pageY);
+    });
+      
+        this.game.state.start('Game', true, false, this.currentLevel);
   },
   pickCoin:function(player, coin){
 	  this.totalCoins+=1;
@@ -245,19 +264,19 @@ getWarnings:function(handleData,request){
       handleData(jQuery.parseJSON(data));
     }
   });
-},
+}
 
-insertWarnings:function(handleData,request){
+};
+
+function insertWarnings(handleData,request,posX,posY){
     $.ajax({
     url:"http://localhost:8012/elreach/php/classes/index.php",
     type: 'POST',
     async: false,
-    data: {consulta: request, posX: 13, posY: 124, tile:102},  
+    data: {consulta: request, posX: posX, posY: posY, tile:1, team_id:team_id, level_id:level_id},  
     success:function(data) {
       handleData(jQuery.parseJSON(data));
     }
   });
 }
-
-};
 

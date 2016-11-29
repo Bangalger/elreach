@@ -40,9 +40,11 @@
         }
 
 
-        function insertWarnings($posX, $posY, $tile){
-            echo $posX;
+        function insertWarnings($posX=null, $posY=null, $tile=null,$team_id=null, $level_id=null){
             $query = $this->pdo->prepare("INSERT INTO warnings (posX,posY,tile) VALUES ('$posX','$posY','$tile')");
+            $query->execute();
+            $newId = $this->pdo->lastInsertId();
+            $query = $this->pdo->prepare("INSERT INTO teams_warnings_levels (warning_id,team_id,level_id) VALUES ('$newId','$team_id','$level_id')");
             $query->execute();
         }
     }
