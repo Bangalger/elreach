@@ -38,5 +38,12 @@
             $query->execute();
             return $query->fetchAll(PDO::FETCH_ASSOC);
         }
+
+
+        function insertWarnings($posX, $posY, $tile){
+            echo $posX;
+            $query = $this->pdo->prepare("INSERT INTO warnings (posX,posY,tile) VALUES ('$posX','$posY','$tile')");
+            $query->execute();
+        }
     }
 ?>

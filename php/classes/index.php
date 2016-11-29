@@ -16,6 +16,15 @@
     } if(!empty($_POST["level_id"])){
         $level_id = $_POST["level_id"];
 
+    }if(!empty($_POST["posX"])){
+        $posX = $_POST["posX"];
+
+    }if(!empty($_POST["posY"])){
+        $posY = $_POST["posY"];
+
+    }if(!empty($_POST["tile"])){
+        $tile = $_POST["tile"];
+
     }
     //echo $consulta;
     switch ($consulta) {
@@ -38,6 +47,11 @@
         case 'warnings':
             $rows = $db->getWarnings($team_id, $level_id);
             break;
+
+        case 'insert_warnings':
+            $rows = $db->insertWarnings($posX, $posY, $tile);
+            break;
+
     	default:
     		# code...
     		break;

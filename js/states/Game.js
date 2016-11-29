@@ -55,6 +55,11 @@ ZPlat.GameState = {
       warning_full = output;
     },'warnings');
 
+
+  this.insertWarnings(function(output){
+    },'insert_warnings');
+
+
   alert(warning_full);
   for(var i=0; i<warning_full.length;i++){
     this.game.add.sprite(warning_full[i]['posX'], warning_full[i]['posY'], 'warning');
@@ -236,6 +241,18 @@ getWarnings:function(handleData,request){
     type: 'POST',
     async: false,
     data: {consulta: request, team_id: team_id, level_id: level_id},  
+    success:function(data) {
+      handleData(jQuery.parseJSON(data));
+    }
+  });
+},
+
+insertWarnings:function(handleData,request){
+    $.ajax({
+    url:"http://localhost:8012/elreach/php/classes/index.php",
+    type: 'POST',
+    async: false,
+    data: {consulta: request, posX: 13, posY: 124, tile:102},  
     success:function(data) {
       handleData(jQuery.parseJSON(data));
     }
