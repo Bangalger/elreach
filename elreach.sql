@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 17-11-2016 a las 00:14:11
+-- Tiempo de generación: 29-11-2016 a las 16:33:29
 -- Versión del servidor: 10.1.16-MariaDB
 -- Versión de PHP: 5.6.24
 
@@ -58,7 +58,8 @@ CREATE TABLE `levels_teams` (
 --
 
 INSERT INTO `levels_teams` (`id`, `team_id`, `level_id`, `status`, `movements`) VALUES
-(1, 1, 1, 'uncompleted', 0);
+(1, 1, 1, 'uncompleted', 0),
+(2, 2, 1, 'uncompleted', 0);
 
 -- --------------------------------------------------------
 
@@ -105,7 +106,9 @@ CREATE TABLE `teams` (
 --
 
 INSERT INTO `teams` (`id`, `name`, `status`, `points`, `turn`) VALUES
-(1, 'La promocion', 'active', 0, 0);
+(1, 'La promocion', 'active', 0, 0),
+(2, 'Animes', 'active', 0, 0),
+(3, 'El gato loco', 'active', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -125,7 +128,11 @@ CREATE TABLE `teams_users` (
 
 INSERT INTO `teams_users` (`id`, `user_id`, `team_id`) VALUES
 (1, 1, 1),
-(2, 2, 1);
+(2, 2, 1),
+(3, 3, 2),
+(4, 4, 2),
+(5, 4, 3),
+(6, 1, 3);
 
 -- --------------------------------------------------------
 
@@ -139,13 +146,6 @@ CREATE TABLE `teams_warnings_levels` (
   `team_id` int(11) NOT NULL,
   `level_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Volcado de datos para la tabla `teams_warnings_levels`
---
-
-INSERT INTO `teams_warnings_levels` (`id`, `warning_id`, `team_id`, `level_id`) VALUES
-(1, 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -168,7 +168,9 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `first_name`, `last_name`, `user_name`, `password`, `points`) VALUES
 (1, 'Juanma', 'Migliore', 'juanmamig', 'juanmamig', 0),
-(2, 'German', 'Figueroa', 'geerman', 'geerman', 0);
+(2, 'German', 'Figueroa', 'geerman', 'geerman', 0),
+(3, 'Nacho', 'Romero', 'nachoromero', 'nachoromero', 0),
+(4, 'Tom', 'Buccino', 'tombuccino', 'tombuccino', 0);
 
 -- --------------------------------------------------------
 
@@ -182,13 +184,6 @@ CREATE TABLE `warnings` (
   `posY` int(11) NOT NULL,
   `tile` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Volcado de datos para la tabla `warnings`
---
-
-INSERT INTO `warnings` (`id`, `posX`, `posY`, `tile`) VALUES
-(1, 200, 100, 1);
 
 --
 -- Índices para tablas volcadas
@@ -262,32 +257,32 @@ ALTER TABLE `levels`
 -- AUTO_INCREMENT de la tabla `levels_teams`
 --
 ALTER TABLE `levels_teams`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `teams`
 --
 ALTER TABLE `teams`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT de la tabla `teams_users`
 --
 ALTER TABLE `teams_users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT de la tabla `teams_warnings_levels`
 --
 ALTER TABLE `teams_warnings_levels`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT de la tabla `warnings`
 --
 ALTER TABLE `warnings`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- Restricciones para tablas volcadas
 --
